@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/messages")
 public class MessageController {
 
@@ -23,9 +24,9 @@ public class MessageController {
     @PostMapping(value = "/add")
     public ResponseEntity<?> addMessage(@RequestBody MessageDetails messageDetails) {
         try {
-            messageService.addMessage(messageDetails);
+            Integer generatedId = messageService.addMessage(messageDetails);
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body("New message added successfully!");
+                    .body(generatedId);
         } catch (Exception e) {
             logger.error(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

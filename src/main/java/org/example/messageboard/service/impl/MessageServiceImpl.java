@@ -19,10 +19,11 @@ public class MessageServiceImpl implements MessageService {
     private MessageRepository messageRepository;
 
     @Override
-    public void addMessage(MessageDetails messageDetails) {
+    public Integer addMessage(MessageDetails messageDetails) {
         logger.info("Adding new message with \n email : {} \n message : {}", messageDetails.getEmail(), messageDetails.getMessage());
         Integer generatedId = messageRepository.addMessage(messageDetails);
-        logger.info("Added message with for email : {} with id : {}", messageDetails.getEmail(), generatedId);
+        logger.info("Added message for email : {} with id : {}", messageDetails.getEmail(), generatedId);
+        return generatedId;
     }
 
     @Override

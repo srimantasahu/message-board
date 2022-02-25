@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MessageService {
 
-    void addMessage(MessageDetails messageDetails);
+    Integer addMessage(MessageDetails messageDetails);
 
     List<MessageDetails> getAllMessages();
 
